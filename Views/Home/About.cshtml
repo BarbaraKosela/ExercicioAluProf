@@ -6,20 +6,20 @@
 
 <p>Nesta página sua consulta de alunos fica mais prática, onde o professor do qual é responsável, está listado também. Assim como o cadastro de novos!</p>
 
-<form>
+<form @ViewBag.Store>
     <div>
         <h6>Cadastro de alunos:</h6>
     </div>
     <div class="row mt-3">
         <div class="col-md-6" id="div-campo-matricula">
             <label label for="campo-nome">Nome do aluno:</label>
-            <input type="text" class="form-control" name="Aluno.Nome" id="campo-nome" placeholder="Digite seu nome" required="required" />
+            <input type="text" class="form-control" name="Alunos.NomeAluno" id="campo-nome" placeholder="Digite seu nome" required="required" />
         </div>
     </div>
     <div class="row mt-3">
         <div class="col-md-6" id="div-campo-matricula">
             <label label for="campo-data">Data de nascimento:</label>
-            <input type="datetime" class="form-control" name="Aluno.DataNascimento" id="campo-data" placeholder="Digite sua data de nascimento" required="required" style="mask: inherit" />
+            <input type="datetime" class="form-control" name="Alunos.DataNascimento" id="campo-data" placeholder="Digite sua data de nascimento" required="required" />
         </div>
     </div>
     <div>
@@ -41,7 +41,24 @@
                     <th>Professor Responsável</th>
                 </tr>
             </thead>
-            <tbody></tbody>
+            <tbody>
+                @foreach (ExercicioAluProf.Models.AlunoModel aluno in @ViewBag.Alunos)
+                {
+                    <tr>
+                        <td>@aluno.ID</td>
+                        <td>@aluno.NomeAluno</td>
+                        <td>@aluno.DataNascimento</td>
+                        <td>@aluno.IDProfessorResposavel</td>
+                        <td>
+                            <a href="/Aluno/Editar?id=@aluno.ID" class="btn btn-outline-success"><i class="fa fa-edit"></i>Editar</a>
+
+                            <a href="/Aluno/Excluir?id=@aluno.ID" class="btn btn-outline-danger">
+                                <i class="fa fa-trash"></i>Excluir
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
             <tfoot>
                 <tr class="bg-primary text-white">
                     <th>Código</th>

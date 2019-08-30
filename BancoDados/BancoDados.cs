@@ -1,22 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
+﻿using System.Configuration;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
 
 namespace ExercicioAluProf.BancoDados
 {
-    public class BancoDados
+    public class BancoDadosConexao
     {
         private static string connectionString;
-
-        static BancoDados()
-        {
-            connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-
-        }
-
+        static BancoDadosConexao() { connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString; }
         public SqlCommand ObterConexao()
         {
             SqlConnection conexao = new SqlConnection(connectionString);
